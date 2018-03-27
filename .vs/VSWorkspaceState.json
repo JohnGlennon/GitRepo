@@ -3,7 +3,9 @@
     "",
     "\\DAL",
     "\\DAL\\EF",
-    "\\Integratieproject_DeZalmverkopers"
+    "\\Integratieproject_DeZalmverkopers",
+    "\\Integratieproject_DeZalmverkopers\\App_Start"
   ],
+  "SelectedNode": "\\Integratieproject_DeZalmverkopers\\App_Start\\FilterConfig.cs",
   "PreviewInSolutionExplorer": false
 }
