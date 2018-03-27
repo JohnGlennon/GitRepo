@@ -1,0 +1,14 @@
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\bin\Debug\DAL.dll.config
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\bin\Debug\DAL.dll
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\bin\Debug\DAL.pdb
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\bin\Debug\Domain.dll
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\bin\Debug\EntityFramework.dll
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\bin\Debug\Domain.pdb
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\bin\Debug\Domain.dll.config
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\bin\Debug\EntityFramework.xml
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\obj\Debug\DAL.dll
+C:\KDG\2017-2018\Integratieproject 1\Integratieproject_DeZalmverkopers\DAL\obj\Debug\DAL.pdb
