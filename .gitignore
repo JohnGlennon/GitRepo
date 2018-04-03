@@ -259,3 +259,61 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/.android
+/.android
+/.AndroidStudio3.0
+/.CLion2016.3
+/.CLion2017.1
+/.config/configstore
+/.gradle
+/.IntelliJIdea2016.3
+/.tn5250j
+/.gradle
+/.VirtualBox
+/.VirtualBox
+/.WebStorm2016.3
+/.WebStorm2016.3
+/3D Objects
+/3D Objects
+/AppData
+/Cisco Packet Tracer 7.0
+/Contacts
+/Desktop
+/Documents
+/Downloads
+/Dropbox
+/Favorites
+/IntelGraphicsProfiles
+/Links
+/Music
+/OneDrive
+/Oracle/oradiag_User/diag/clients/user_User/host_1599404989_80
+/Pictures
+/Saved Games
+/Searches
+/source/repos/IntProjMetIdentity
+/source/repos/LocalRepo
+/Tracing/WPPMedia
+/Videos
+/VirtualBox VMs
+/WebstormProjects/P3W1
+/.bash_history
+/.csslintrc
+/.emulator_console_auth_token
+/.emulator_console_auth_token
+/.eslintrc
+/.gitconfig
+/.packettracer
+/.productivitypowerpack2017
+/coffeelint.json
+/NTUSER.DAT
+/ntuser.dat.LOG1
+/ntuser.dat.LOG2
+/NTUSER.DAT{d356868f-b436-11e7-bf50-c8d3ff969b8f}.TM.blf
+/NTUSER.DAT{d356868f-b436-11e7-bf50-c8d3ff969b8f}.TMContainer00000000000000000001.regtrans-ms
+/NTUSER.DAT{d356868f-b436-11e7-bf50-c8d3ff969b8f}.TMContainer00000000000000000002.regtrans-ms
+/ntuser.ini
+/tslint.json
+/Documents/School/IntegratieprojectCode
+/Documents/School/IntegratieprojectCode
+/Documents/School/IntegratieprojectCode
