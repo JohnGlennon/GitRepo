@@ -1,0 +1,157 @@
+﻿@model MVC.Models.Alerts.CreateAlertViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Beschrijving, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.Beschrijving, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Beschrijving, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Onderwerp, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.DropDownListFor(model => model.Onderwerp, ViewBag.Onderwerp as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Mail)
+                    @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mobiel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Mobiel)
+                    @Html.ValidationMessageFor(model => model.Mobiel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinDaling, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.MinDaling, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinDaling, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinDalingPeriode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.MinDalingPeriode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinDalingPeriode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinStijging, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.MinStijging, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinStijging, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinStijgingPeriode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.MinStijgingPeriode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinStijgingPeriode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NietBelangrijkWaarde, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.NietBelangrijkWaarde, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NietBelangrijkWaarde, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BelangrijkWaarde, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.BelangrijkWaarde, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BelangrijkWaarde, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BelangrijkheidsPeriode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.BelangrijkheidsPeriode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BelangrijkheidsPeriode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinPolariteit, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.MinPolariteit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinPolariteit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxPolariteit, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.MaxPolariteit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaxPolariteit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PolariteitsPeriode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.PolariteitsPeriode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PolariteitsPeriode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinObjectiviteit, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.MinObjectiviteit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinObjectiviteit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxObjectiviteit, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.MaxObjectiviteit, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaxObjectiviteit, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ObjectiviteitsPeriode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-offset-4">
+                @Html.EditorFor(model => model.ObjectiviteitsPeriode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ObjectiviteitsPeriode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group">
+                <div class="col-md-offset-5">
+                    <input type="submit" value="Pas aan" class="btn btn-primary" />
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuleer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

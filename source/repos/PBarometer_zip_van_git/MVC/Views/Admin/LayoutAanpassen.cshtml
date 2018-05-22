@@ -1,0 +1,63 @@
+﻿@model MVC.Models.LayoutViewModel
+
+<h3>Layout aanpassen</h3>
+@using (Html.BeginForm("LayoutAanpassen", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <table class="table">
+        <tr>
+            <td>
+                <label>Kleur achtergrond</label>
+            </td>
+            <td>
+                <input id="colorID" type="color" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label>Naam onderwerp</label>
+            </td>
+            <td>
+                <input type="text" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label>Afbeelding startscherm</label>
+            </td>
+            <td>
+                <input type="file" id="afbeelding" name="afbeelding" accept="image/*" />
+            </td>
+        </tr>
+    </table>
+
+    <div>
+        <input type="submit" value="Pas aan" class="btn btn-primary" />
+    </div>
+}
+<script type="text/javascript">
+    $("#colorID").change(function () {
+        var clr = $("#colorID").val();
+        $("body").css("background-color", clr);
+        Model.kleur = clr;
+    });
+</script>
+
+@*<script type="text/javascript">
+        $("#fileID").change(function () {
+            var file = $("#fileID").val();
+            $("body").add("background", file);
+            Model.file = file;
+        });
+    </script>*@
+
+@*<script type="text/javascript">
+        $("#btnOpslaan").click(function () {
+            @Url.Action("SlaAchtergrondOp", "Admin", new { kleur = Model.kleur });
+        });
+    </script>*@
+
+
+

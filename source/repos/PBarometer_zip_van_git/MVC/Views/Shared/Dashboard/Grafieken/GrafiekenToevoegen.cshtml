@@ -1,0 +1,63 @@
+﻿
+<h4>Grafieken</h4>
+<div>
+    <select id="grafieken">
+        <option hidden selected>Selecteer een optie</option>
+        <optgroup label="Kruising">
+            <option>Items kruisen</option>
+        </optgroup>
+
+        <optgroup label="Items vergelijken op dit moment">
+            <option>Items vergelijken op dit moment</option>
+        </optgroup>
+
+        <optgroup label="Items vergelijken doorheen de tijd">
+            <option>Items vergelijken doorheen de tijd</option>
+        </optgroup>
+
+        <optgroup label="Aantal tweets">
+            <option>Aantal tweets doorheen de tijd</option>
+        </optgroup>
+
+    </select>
+</div>
+
+<div id="divInhoud">
+
+</div>
+
+<script>
+    $("#grafieken").change(function () {
+
+        var keuze = $("#grafieken").val();
+        
+
+        switch (keuze) {
+            case "Items kruisen":
+                $.get('@Url.Action("LaadItemsKruisen", "Dashboard")', {}, function (resultaat) {
+                     $("#divInhoud").html(resultaat)
+                 });
+                break;
+            case "Items vergelijken op dit moment":
+                $.get('@Url.Action("LaadVergelijkenOpMoment", "Dashboard")', {}, function (resultaat) {
+                     $("#divInhoud").html(resultaat)
+                 });
+                break;
+            case "Items vergelijken doorheen de tijd":
+                $.get('@Url.Action("LaadVergelijkenDoorheenDeTijd", "Dashboard")', {}, function (resultaat) {
+                     $("#divInhoud").html(resultaat)
+                 });
+                break;
+            case "Aantal tweets doorheen de tijd":
+                $.get('@Url.Action("LaadAantalTweets", "Dashboard")', {}, function (resultaat) {
+                     $("#divInhoud").html(resultaat)
+                 });
+                break;
+        }
+
+        $("#titelKeuze").html(keuze)
+
+    });
+</script>
+
+

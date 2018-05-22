@@ -1,0 +1,8 @@
+﻿@for (int i = 1; i <= 3; i++)
+{
+    <div>
+        <label>Persoon @i</label>
+        @Html.DropDownList("Dashboard", ViewBag.PersonenViewbag as List<SelectListItem>, new { id = "persoon" + i })
+    </div>
+}
+

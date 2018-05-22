@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Organisaties";
+}
+
+
+
+<input type="text" id="zoekBalkOrganisaties" onkeyup="zoekFunctieOrganisaties()" placeholder="Zoek op naam..." class="form-control col col-md-6">
+@if (User.IsInRole("Admin"))
+{
+
+    <button type="button" class="btn btn-secondary col-sm-offset-5" onclick="location.href='@Url.Action("MaakOrganisatie", "Overzicht")'">
+        <span class="glyphicon glyphicon-plus"></span> Maak een organisatie aan
+    </button>
+
+}
+
+<div class="table-container">
+    <table class="table table-hover" id="organisatiesTabel">
+        <thead>
+            <tr>
+                <th>
+                    <p>Organisatie</p>
+                </th>
+                <th>
+                    <p>Vermeldingen</p>
+                </th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var organisatie in ViewBag.Organisaties)
+            {
+                <tr onclick="showModal('#organisatieDetails', '#organisatieDetailsBody', @organisatie.GemonitordItemId)">
+                    <td>
+                        @organisatie.Naam
+                    </td>
+                    <td>
+                        @organisatie.TotaalAantalVermeldingen
+                    </td>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("PasOrganisatieAan", "Overzicht",new { id = organisatie.GemonitordItemId})'">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("VerwijderItem", "Overzicht",new { id = organisatie.GemonitordItemId})'">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="organisatieDetails" class="modal fade" tabindex="-1" role="dialog" data-url='@Url.Action("OrganisatieDetails","Overzicht")'>
+    <div class="modal-dialog modal-sm" id="organisatieDetailsBody">
+    </div>
+</div>
+
+<div id="persoonDetailsOrganisatie" class="modal fade" tabindex="-1" role="dialog" data-url='@Url.Action("PersoonDetails","Overzicht")'>
+    <div class="modal-dialog modal-sm" id="persoonDetailsOrganisatieBody">
+    </div>
+</div>
+
+<script>
+    function zoekFunctieOrganisaties() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("zoekBalkOrganisaties");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("organisatiesTabel");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<script>
+    function showModalPersoonDetails(persoonDetails, persoonDetailsBody, id) {
+        var url = $(persoonDetails).data('url');
+        $.get(url, { id: id }, function (data) {
+            $(persoonDetailsBody).html(data);
+            $(persoonDetails).modal('show');
+        });
+    }
+</script>
+

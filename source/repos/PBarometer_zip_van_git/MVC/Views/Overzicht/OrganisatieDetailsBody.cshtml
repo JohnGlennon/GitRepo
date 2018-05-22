@@ -1,0 +1,92 @@
+﻿<div class="panel panel-info">
+    <div class="panel-heading">Verzamelde gegevens</div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+            <tr>
+                <td>
+                    Aantal vermeldingen:
+                </td>
+                <td>
+                    @ViewBag.Organisatie.TotaalAantalVermeldingen
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Vermeldingentrend:
+                </td>
+                <td>
+                    @ViewBag.Organisatie.VermeldingenTrend
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gemiddelde polariteit:
+                </td>
+                <td>
+                    @ViewBag.GemPolariteit
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Polariteitstrend:
+                </td>
+                <td>
+                    @ViewBag.Organisatie.PolariteitsTrend
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gemiddelde objectiviteit:
+                </td>
+                <td>
+                    @ViewBag.GemObjectiviteit
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Objectiviteitstrend:
+                </td>
+                <td>
+                    @ViewBag.Organisatie.ObjectiviteitsTrend
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Aantal vermeldingen van vrouwen:
+                </td>
+                <td>
+                    @ViewBag.Organisatie.AantalBerichtenVanVrouwen
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Aantal vermeldingen van mannen:
+                </td>
+                <td>
+                    @ViewBag.Organisatie.AantalBerichtenVanMannen
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Meest voorkomende URL:
+                </td>
+                <td>
+                    @if (ViewBag.HeeftMeestVoorkomendeURL)
+                    {
+                        <a href="@ViewBag.Organisatie.MeestVoorkomendeURL" target="_blank">@ViewBag.MeestVoorkomendeURL</a>
+                    }
+                    else
+                    {
+                        <p>Onbekend</p>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">Leden</div>
+    <div class="panel-body">
+        @Html.Partial("OrganisatieDetailsBodyPersonen")
+    </div>
+</div>

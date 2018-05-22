@@ -1,0 +1,19 @@
+﻿
+@{
+  ViewBag.Title = "DeleteAccount";
+}
+
+<h2>Account verwijderen</h2>
+@using (Html.BeginForm("DeleteAccount", "Profiel", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+@Html.AntiForgeryToken()
+<section>
+    Bent u zeker dat u uw account wilt verwijderen? Deze keuze is definitief en kan niet ongedaan gemaakt worden.
+</section>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Ik ben zeker!" class="btn btn-primary btn-algemene-layout" />
+    </div>
+</div>
+}

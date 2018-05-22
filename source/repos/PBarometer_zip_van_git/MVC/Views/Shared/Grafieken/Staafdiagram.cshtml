@@ -1,0 +1,26 @@
+﻿<canvas id="barChart"></canvas>
+
+
+<script>
+    //Horizontaal staafdiagram
+    //var c = document.getElementById("");
+    //var ctx = c.getContext("2d");
+
+    var ctx = $("#barChart");
+    var tData = $.getValues("/Grafiek/BarChartData");
+    var myBarChart = new Chart(ctx, {
+        options: {
+            title: {
+                display: true,
+                text: "TEST",
+
+            },
+            legend: {
+                display: false
+            }
+        },
+        type: 'horizontalBar',
+        data: tData
+    });
+</script>
+

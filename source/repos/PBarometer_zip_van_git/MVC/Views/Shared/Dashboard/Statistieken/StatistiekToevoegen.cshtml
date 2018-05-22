@@ -1,0 +1,62 @@
+﻿<h4>Statistieken</h4>
+<div>
+    <select id="statistieken">
+        <option hidden selected>Selecteer een optie</option>
+        <optgroup label="Getal/Trend">
+            <option>Getal</option>
+            <option>Getal + trend</option>
+        </optgroup>
+        <optgroup label="Top 5 associaties met een item">
+            <option>Top 5</option>
+        </optgroup>
+
+        <optgroup label="Top 10 associaties met een item">
+            <option>Top 10</option>
+        </optgroup>
+        <optgroup label="Kruising maken">
+            <option>Kruising</option>
+        </optgroup>
+    </select>
+</div>
+
+<h4 id="titelKeuze"></h4>
+<div id="divInhoud"></div>
+
+<script>
+    $("#statistieken").change(function () {
+
+        var keuze = $("#statistieken").val();
+
+
+        switch (keuze) {
+            case "Getal":
+                 $.get('@Url.Action("LaadGetalKeuze", "DashboardStatistieken")', {}, function (resultaat) {
+                     $("#divInhoud").html(resultaat)
+                 });
+               break;
+            case "Getal + trend":
+                $.get('@Url.Action("LaadGetalTrendKeuze", "DashboardStatistieken")', {}, function (resultaat) {
+                     $("#divInhoud").html(resultaat)
+                 });
+                break;
+            case "Top 5":
+                $.get('@Url.Action("LaadTop5Keuze", "DashboardStatistieken")', {}, function (resultaat) {
+                     $("#divInhoud").html(resultaat)
+                 });
+                break;
+            case "Top 10":
+                $.get('@Url.Action("LaadTop10Keuze", "DashboardStatistieken")', {}, function (resultaat) {
+                    $("#divInhoud").html(resultaat)
+                });
+            case "Kruising":
+                $.get('@Url.Action("LaadKruisingKeuze", "DashboardStatistieken")', {}, function (resultaat) {
+                    $("#divInhoud").html(resultaat)
+                });
+        }
+
+        $("#titelKeuze").html(keuze);
+
+    });
+</script>
+
+

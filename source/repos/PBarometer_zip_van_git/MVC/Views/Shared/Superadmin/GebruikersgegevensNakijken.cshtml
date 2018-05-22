@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MVC.Models.GebruikersViewModel>
+
+@{
+  ViewBag.Title = "GebruikersTonen";
+}
+
+<h2>Gebruikers</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            Verwijder gebruiker
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("VerwijderGebruiker", "Superadmin", new { email = @item.Email })'">
+                <span>Verwijder</span>
+            </button>
+        </td>
+    </tr>
+    }
+</table>

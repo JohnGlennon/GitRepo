@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "LegeIndex";
+}
+
+<h2>Alerts</h2>
+<div class="text-center">
+    <h3>Zo te zien heb je nog geen alerts toegevoegd. Klik op één van deze knoppen om je eerste alert toe te voegen.</h3>
+    <button class="btn btn-primary btn-algemene-layout" data-toggle="modal" onclick="showCreateModal('#createSimpleAlert', '#createSimpleAlertBody')">
+        Nieuwe eenvoudige alert
+    </button>
+    <button class="btn btn-primary btn-algemene-layout" data-toggle="modal" onclick="showCreateModal('#createComplexeAlert', '#createComplexeAlertBody')">
+        Nieuwe complexe alert
+    </button>
+</div>
+
+<div id="createSimpleAlert" class="modal fade" tabindex="-1" role="dialog" data-url='@Url.Action("CreateSimpleAlert")'>
+    <div class="modal-dialog modal-sm" id="createSimpleAlertBody">
+    </div>
+</div>
+<div id="createComplexeAlert" class="modal fade" tabindex="-1" role="dialog" data-url='@Url.Action("CreateAlert")'>
+    <div class="modal-dialog modal-sm" id="createComplexeAlertBody">
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        function showModal(editComplex, editComplexBody, id) {
+            var url = $(editComplex).data('url');
+
+            $.get(url, { id: id }, function (data) {
+                $(editComplexBody).html(data);
+                $(editComplex).modal('show');
+            });
+        }
+        function showCreateModal(createSimpleAlert, createSimpleAlertBody) {
+            var url = $(createSimpleAlert).data('url');
+
+            $.get(url, function (data) {
+                $(createSimpleAlertBody).html(data);
+                $(createSimpleAlert).modal('show');
+            });
+        };
+    </script>
+}

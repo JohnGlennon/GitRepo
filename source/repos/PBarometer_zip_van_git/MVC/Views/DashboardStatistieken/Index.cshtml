@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Dashboard - statistieken</h1>
+
+
+<div class="container" id="elementenStatistieken">
+    @*Rij 1*@
+    <div class="row">
+        <div class="col-md-11">
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-primary button-xx-large" id="btnToevoegen" data-target="#modalStatistiekToevoegen" data-toggle="modal">+</button>
+        </div>
+    </div>
+
+
+    @foreach (var item in ViewBag.StatistiekenViewbag)
+    {
+        if (item.SoortStatistiek == "getal")
+        {
+            <div class="col-md-6">
+
+                @Html.Action("LaadGetalViaId", "DashboardStatistieken", new { id = item.StatistiekId })
+
+            </div>
+
+
+        }
+        else if (item.SoortStatistiek == "getalTrend")
+        {
+            <div class="col-md-6">
+
+
+                @Html.Action("LaadGetalTrendViaId", "DashboardStatistieken", new { id = item.StatistiekId })
+
+
+
+            </div>
+
+
+        }
+
+    }
+
+
+    <div class="col-md-6">
+
+        @Html.Action("LaadTop5", "DashboardStatistieken")
+
+    </div>
+
+    <div class="col-md-6">
+
+        @Html.Action("LaadTop10", "DashboardStatistieken")
+
+    </div>
+
+</div>
+
+
+
+<div class="modal" id="modalStatistiekToevoegen" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Statistiek toevoegen</h4>
+            </div>
+            <div class="modal-body" id="divStatistiekToevoegen">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+<script src="~/Scripts/Chart.js"></script>
+
+<script src="~/Scripts/EigenScripts.js"></script>
+
+@*<script type="text/javascript">
+                $("#btnToevoegen").click(function () {
+                    $.get('@Url.Action("LaadStatistiekToevoegen", "DashboardStatistieken")', {}, function (resultaat) {
+                        $("#divStatistiekToevoegen").html(resultaat);
+                });
+                });
+    </script>*@
+
+<script type="text/javascript">
+                $("#btnToevoegen").click(function () {
+                    $.get('@Url.Action("LaadStatistiekToevoegen", "DashboardStatistieken")', {}, function (resultaat) {
+                        $("#divStatistiekToevoegen").html(resultaat);
+                });
+                });
+</script>

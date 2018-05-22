@@ -1,0 +1,163 @@
+﻿@model IEnumerable<MVC.Models.Alerts.AlertViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Alerts</h2>
+
+<p>
+    <button class="btn btn-primary btn-algemene-layout" data-toggle="modal" onclick="showCreateModal('#createSimpleAlert', '#createSimpleAlertBody')">
+        Nieuwe eenvoudige alert
+    </button>
+    <button class="btn btn-primary btn-algemene-layout" data-toggle="modal" onclick="showCreateModal('#createComplexeAlert', '#createComplexeAlertBody')">
+        Nieuwe complexe alert
+    </button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Triggered)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Beschrijving)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Onderwerp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Geactiveerd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobiel)
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.Triggered)
+                {
+                    <span class="glyphicon glyphicon-ok" style="color:limegreen" data-toggle="tooltip" title='@item.TriggerRedenen' data-placement="auto"></span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Beschrijving)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Onderwerp)
+            </td>
+            <td>
+                @if (item.Geactiveerd)
+                {
+                    <span class="glyphicon glyphicon-ok"></span>
+                }
+            </td>
+            <td>
+                @if (item.Mail)
+                {
+                    <span class="glyphicon glyphicon-ok"></span>
+                }
+            </td>
+            <td>
+                @if (item.Mobiel)
+                {
+                    <span class="glyphicon glyphicon-ok"></span>
+                }
+            </td>
+            <td>
+                @if (item.Eenvoudig)
+                {
+                    <button type="button" class="btn btn-li" data-toggle="modal" onclick="showModal('#editEenvoudig', '#editEenvoudigBody', @item.Id)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" onclick="showModal('#editComplex', '#editComplexBody', @item.Id)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                }
+                <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("VerwijderAlert", new { id = @item.Id})'">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("ToggleActivatie", new { id = @item.Id})'">
+                    <span class="glyphicon glyphicon-off"></span>
+                </button>
+                @if (item.Triggered)
+                {
+                    <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("Gelezen", new { id = @item.Id })'">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-secondary" disabled>
+                        <span class="glyphicon glyphicon-eye-close"></span>
+                    </button>
+                }
+            </td>
+        </tr>
+    }
+
+
+</table>
+<div id="editEenvoudig" class="modal fade" tabindex="-1" role="dialog" data-url='@Url.Action("EditEenvoudigeAlert")'>
+    <div class="modal-dialog modal-sm" id="editEenvoudigBody">
+    </div>
+</div>
+<div id="editComplex" class="modal fade" tabindex="-1" role="dialog" data-url='@Url.Action("EditComplexeAlert")'>
+    <div class="modal-dialog" id="editComplexBody">
+    </div>
+</div>
+<div id="createSimpleAlert" class="modal fade" tabindex="-1" role="dialog" data-url='@Url.Action("CreateSimpleAlert")'>
+    <div class="modal-dialog modal-sm" id="createSimpleAlertBody">
+    </div>
+</div>
+<div id="createComplexeAlert" class="modal fade" tabindex="-1" role="dialog" data-url='@Url.Action("CreateAlert")'>
+    <div class="modal-dialog modal-sm" id="createComplexeAlertBody">
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+
+        function showModal(editComplex, editComplexBody, id) {
+            var url = $(editComplex).data('url');
+
+            $.get(url, { id: id }, function (data) {
+                $(editComplexBody).html(data);
+                $(editComplex).modal('show');
+            });
+        }
+
+        function showCreateModal(createSimpleAlert, createSimpleAlertBody) {
+            var url = $(createSimpleAlert).data('url');
+
+            $.get(url, function (data) {
+                $(createSimpleAlertBody).html(data);
+                $(createSimpleAlert).modal('show');
+            });
+        };
+
+
+
+
+    </script>
+}
+
+
+
+
+

@@ -1,0 +1,21 @@
+﻿<canvas id="multiPieChart"></canvas>
+
+<script>
+    //Taartdiagram - multi
+    var c = document.getElementById("");
+    var ctx = c.getContext("2d");
+
+    var ctx = $("#multiPieChart");
+    var tData = $.getValues("/Grafiek/MultiDonutChartData");
+    var myPieChart = new Chart(ctx, {
+        options: {
+            title: {
+                display: true,
+                text: "TEST",
+            }
+        },
+        type: 'pie',
+        data: tData,
+    });
+</script>
+

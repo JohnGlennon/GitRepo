@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewBag.Title = "PersoonDetails";
+}
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div id="fb-root"></div>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/nl_BE/sdk.js#xfbml=1&version=v3.0';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Persoonlijke Gegevens</div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+            <tr>
+                <td>
+                    Naam:
+                </td>
+                <td>
+                    @ViewBag.Persoon.Naam
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Organisatie:
+                </td>
+                <td>
+                    @ViewBag.Organisatie
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Geboortedatum:
+                </td>
+                <td>
+                    @ViewBag.Geboortedatum
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gemeente:
+                </td>
+                <td>
+                    @ViewBag.Gemeente
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Postcode:
+                </td>
+                <td>
+                    @ViewBag.Postcode
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Website:
+                </td>
+                <td>
+                    @if (ViewBag.Website)
+                    {
+                        <a href="@ViewBag.WebsiteURL" target="_blank">@ViewBag.Persoon.Website</a>
+                    }
+                    else
+                    {
+                        <p>Onbekend</p>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">Verzamelde gegevens</div>
+    <div class="panel-body">
+        <table class="table table-condensed">
+            <tr>
+                <td>
+                    Aantal vermeldingen:
+                </td>
+                <td>
+                    @ViewBag.Persoon.TotaalAantalVermeldingen
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Vermeldingentrend:
+                </td>
+                <td>
+                    @ViewBag.Persoon.VermeldingenTrend
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gemiddelde polariteit:
+                </td>
+                <td>
+                    @ViewBag.GemPolariteit
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Polariteitstrend:
+                </td>
+                <td>
+                    @ViewBag.Persoon.PolariteitsTrend
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gemiddelde objectiviteit:
+                </td>
+                <td>
+                    @ViewBag.GemObjectiviteit
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Objectiviteitstrend:
+                </td>
+                <td>
+                    @ViewBag.Persoon.ObjectiviteitsTrend
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Aantal vermeldingen van vrouwen:
+                </td>
+                <td>
+                    @ViewBag.Persoon.AantalBerichtenVanVrouwen
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Aantal vermeldingen van mannen:
+                </td>
+                <td>
+                    @ViewBag.Persoon.AantalBerichtenVanMannen
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Meest voorkomende URL:
+                </td>
+                <td>
+                    @if (ViewBag.HeeftMeestVoorkomendeURL)
+                    {
+                        <a href="@ViewBag.Persoon.MeestVoorkomendeURL" target="_blank">@ViewBag.MeestVoorkomendeURL</a>
+                    }
+                    else
+                    {
+                        <p>Onbekend</p>
+                    }
+
+                </td>
+            </tr>
+        </table>
+      
+
+
+
+    @*@Html.Partial("~/Views/Shared/Grafieken/Lijndiagram/LijndiagramAantalTweets.cshtml")*@
+
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">Twitter</div>
+    <div class="panel-body">
+        @if (ViewBag.Twitter)
+        {
+            <a class="twitter-timeline" data-adapt-container-width="true" href=@("https://www.twitter.com/" + ViewBag.Persoon.TwitterHandle) data-height="600"></a>
+        }
+        else
+        {
+            <p>Voor deze persoon is geen Twitterpagina beschikbaar.</p>
+        }
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">Facebook</div>
+    <div class="panel-body">
+        @if (ViewBag.HeeftFacebook)
+        {
+            <div class="fb-page" data-href=@ViewBag.Persoon.Facebook data-tabs="timeline" data-small-header="false"
+                 data-width="600" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"></div>
+        }
+        else
+        {
+            <p>Voor deze persoon is geen Facebookpagina beschikbaar.</p>
+        }
+
+    </div>
+</div>
+
+
+

@@ -1,0 +1,109 @@
+﻿
+@for (int i = 1; i < ViewBag.StatistiekenViewbag.Count + 1; i++)
+{
+    if (ViewBag.StatistiekenViewbag[i - 1].SoortStatistiek == "getal")
+    {
+        <div class="col-md-6">
+            @if (i % 2 != 0)
+            {
+                @Html.Action("LaadGetalViaId", "DashboardStatistieken", new { id = ViewBag.StatistiekenViewbag[i - 1].StatistiekId })
+
+
+            }
+        </div>
+
+        <div class="col-md-6">
+
+            @if (i % 2 == 0)
+            {
+
+                @Html.Action("LaadGetalViaId", "DashboardStatistieken", new { id = ViewBag.StatistiekenViewbag[i - 1].StatistiekId })
+
+
+
+            }
+
+        </div>
+    }
+    else if (ViewBag.StatistiekenViewbag[i - 1].SoortStatistiek == "getalTrend")
+    {
+        <div class="col-md-6">
+            @if (i % 2 != 0)
+            {
+                @Html.Action("LaadGetalTrendViaId", "DashboardStatistieken", new { id = ViewBag.StatistiekenViewbag[i - 1].StatistiekId })
+
+
+            }
+        </div>
+
+        <div class="col-md-6">
+
+            @if (i % 2 == 0)
+            {
+
+                @Html.Action("LaadGetalTrendViaId", "DashboardStatistieken", new { id = ViewBag.StatistiekenViewbag[i - 1].StatistiekId })
+
+
+
+            }
+
+        </div>
+    }
+    else if (ViewBag.StatistiekenViewbag[i - 1].SoortStatistiek == "top5")
+    {
+        <div class="col-md-6">
+            @if (i % 2 != 0)
+            {
+                @Html.Action("LaadTop5ViaId", "DashboardStatistieken", new { id = ViewBag.StatistiekenViewbag[i - 1].StatistiekId })
+
+
+            }
+        </div>
+
+        <div class="col-md-6">
+
+            @if (i % 2 == 0)
+            {
+
+                @Html.Action("LaadTop5ViaId", "DashboardStatistieken", new { id = ViewBag.StatistiekenViewbag[i - 1].StatistiekId })
+
+
+
+            }
+
+        </div>
+    }
+    else if (ViewBag.StatistiekenViewbag[i - 1].SoortStatistiek == "top10")
+    {
+        <div class="col-md-6">
+            @if (i % 2 != 0)
+            {
+                @Html.Action("LaadTop10ViaId", "DashboardStatistieken", new { id = ViewBag.StatistiekenViewbag[i - 1].StatistiekId })
+
+
+            }
+        </div>
+
+        <div class="col-md-6">
+
+            @if (i % 2 == 0)
+            {
+
+                @Html.Action("LaadTop10ViaId", "DashboardStatistieken", new { id = ViewBag.StatistiekenViewbag[i - 1].StatistiekId })
+
+
+
+            }
+
+        </div>
+    }
+
+
+}
+
+
+
+
+
+
+

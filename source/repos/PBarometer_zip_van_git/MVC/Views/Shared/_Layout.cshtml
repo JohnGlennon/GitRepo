@@ -1,0 +1,172 @@
+﻿@*Seppe*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Politieke Barometer</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                @*<span class="noti glyphicon glyphicon-bell"><span class="count">&nbsp;</span></span>*@
+
+
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </button>
+
+                @* @Html.ActionLink("Home", MVC.Home.Index(), new { @class = "navbar-brand" })*@
+
+
+
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "navbar-brand" })</li>
+
+
+
+                    @if (ViewBag.GeenDeelplatformGeselecteerd == null || ViewBag.GeenDeelplatformGeselecteerd == false)
+                    {
+
+
+                        <li>@Html.ActionLink("Dashboard - grafieken", "Index", "Dashboard")</li>
+
+                        <li>@Html.ActionLink("Dashboard - statistieken", "Index", "DashboardStatistieken")</li>
+
+                        @*<li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Page 1
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Page 1-1</a></li>
+                                    <li><a href="#">Page 1-2</a></li>
+                                    <li><a href="#">Page 1-3</a></li>
+                                </ul>
+                            </li>*@
+
+
+                    }
+
+                    @*@if ((bool?)ViewBag.OverzichtAdded == true)
+                        {*@
+                    @if (ViewBag.GeenDeelplatformGeselecteerd == null || ViewBag.GeenDeelplatformGeselecteerd == false)
+                    {
+
+
+                        <li>@Html.ActionLink("Overzicht", "Index", "Overzicht")</li>
+
+
+                    }
+
+
+                    @*@if ((bool?)ViewBag.WeeklyReviewAdded == true)
+                        {*@
+                    @*<li>@Html.ActionLink("Weekly Review", "Index", "WeeklyReview")</li>*@
+
+
+                    @if (User.IsInRole("SuperAdmin") && (ViewBag.GeenDeelplatformGeselecteerd == null || ViewBag.GeenDeelplatformGeselecteerd == false))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                Beheer
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Sitebeheer", "Index", "Superadmin")</li>
+                                <li>@Html.ActionLink("Deelplatformbeheer", "Index", "Admin")</li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Sitebeheer", "Index", "Superadmin")</li>
+                    }
+                    @if (User.IsInRole("Admin") && !User.IsInRole("SuperAdmin") && (ViewBag.GeenDeelplatformGeselecteerd == null || ViewBag.GeenDeelplatformGeselecteerd == false))
+                    {
+                        <li>@Html.ActionLink("Deelplatformbeheer", "Index", "Admin")</li>
+                    }
+
+
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+
+
+                    @if (!Request.IsAuthenticated)
+                    {
+
+                        <li>@Html.ActionLink("Inloggen", "Login", "Account")</li>
+
+                        <li>@Html.ActionLink("Registreren", "Register", "Account")</li>
+
+                    }
+                    else
+                    {
+
+                        @*<li>@Html.ActionLink("Profiel", MVC.Profiel.Index())</li>*@
+                        <li>@Html.ActionLink("Profiel", "Index", "Profiel")</li>
+
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Uitloggen</a></li>
+                            </ul>
+                        }
+                        if (ViewBag.GeenDeelplatformGeselecteerd == null || ViewBag.GeenDeelplatformGeselecteerd == false)
+                        {
+                            <li><span class="noti glyphicon glyphicon-bell" id="alertID" onclick="location.href='@Url.Action("Index", "Alerts")'"><span class="count">&nbsp;</span></span></li>
+                        }
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; Barometer</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    @RenderSection("scripts", required: false)
+
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+
+    @*<script>
+            $(window).load(function setImage() {
+                $.ajax("https://localhost:44314/Alerts/IsTriggered", {
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.status) {
+                            $('#alertID').css({ 'color', 'yellow' })
+                        } else {
+                            $('#alertID').css({ 'color', 'black' })
+                        }
+                    }
+                })
+            })
+        </script>*@
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+</body>
+</html>

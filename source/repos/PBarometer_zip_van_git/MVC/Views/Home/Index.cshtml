@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MVC.Models.Home.DeelplatformViewModel>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Kies uw deelplatform.</h2>
+<hr />
+
+
+@foreach (var item in Model)
+{
+    <div class="row deelplatformHomeContainer elementen-centreren" onclick="location.href='@Url.Action("Index","Dashboard", new { deelplatform = @item.URL})'">
+        <div class="deelplatformTekst">
+            <h3>@item.Naam</h3>
+        </div>
+        <img class="deelplatformHomeAfbeelding" src="~/images/Deelplatformen/@item.Afbeelding"/>
+    </div>
+    <hr />
+}
+
+

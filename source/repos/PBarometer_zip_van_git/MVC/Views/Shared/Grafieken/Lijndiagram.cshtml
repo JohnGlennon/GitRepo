@@ -1,0 +1,34 @@
+﻿<script>
+    //Lijndiagram
+    //var c = document.getElementById("");
+    //var ctx = c.getContext("2d");
+
+    var ctx = $("#lineChart");
+    //var tData = $.getValues("/Grafiek/LineChartData");
+    var tData = $.getValues("/Grafiek/LineChartAantalTweets");
+    var myLineChart = new Chart(ctx, {
+        options: {
+            title: {
+                display: true,
+                text: "TEST"
+
+            },
+            legend: {
+                display: false
+            },
+
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 90,
+                        minRotation: 90
+                    }
+                }]
+            }
+
+        },
+        type: 'line',
+        data: tData
+    });
+</script>

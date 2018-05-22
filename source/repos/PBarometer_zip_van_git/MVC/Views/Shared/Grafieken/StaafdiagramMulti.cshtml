@@ -1,0 +1,38 @@
+﻿<canvas id="MultibarChart" height="250"></canvas>
+@Html.Partial("~/Views/Shared/Dashboard/Bewerkingsknop.cshtml")
+@Html.Partial("~/Views/Shared/Dashboard/VerwijderKnop.cshtml")
+
+
+
+
+<script>
+    //Staafdiagram - multi
+    //var c = document.getElementById("");
+    //var ctx = c.getContext("2d");
+
+    var ctx = $("#MultibarChart");
+    var tData = $.getValues("/Grafiek/MultiBarChartData");
+    var myNewMultiBarChart = new Chart(ctx, {
+        options: {
+            title: {
+                display: true,
+                text: "TEST",
+                fontSize: 20
+
+            },
+
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 90,
+                        minRotation: 90
+                    }
+                }]
+            }
+
+        },
+        type: 'bar',
+        data: tData
+    });
+</script>

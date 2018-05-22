@@ -1,0 +1,21 @@
+﻿<h3>Data importeren</h3>
+
+<div>
+    @using (Html.BeginForm("LaadData", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <p>
+            <input type="file" id="jsonUpload" name="bestand" accept=".json" />
+        </p>
+        <p>
+            <input type="submit" value="Data importeren" class="btn btn-primary btn-algemene-layout" />
+        </p>
+    }
+</div>
+
+<h3>Data exporteren</h3>
+
+<div>
+    <button class="btn btn-primary btn-algemene-layout">Exporteren naar CSV-bestand</button>
+</div>
+
+

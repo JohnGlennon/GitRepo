@@ -1,0 +1,32 @@
+﻿<script>
+    //Lijndiagram - multi
+
+    var c = document.getElementById("");
+    var ctx = c.getContext("2d");
+
+    var ctx = $("#MultiLineChart");
+    //var tData = $.getValues("/Grafiek/MultiLineChartData");
+    var tData = $.getValues("/Grafiek/LineChartVergelijking");
+    var myLineChart = new Chart(ctx, {
+        options: {
+            title: {
+                display: true,
+                text: "TEST"
+
+            },
+
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 90,
+                        minRotation: 90
+                    }
+                }]
+            }
+
+        },
+        type: 'line',
+        data: tData
+    });
+</script>

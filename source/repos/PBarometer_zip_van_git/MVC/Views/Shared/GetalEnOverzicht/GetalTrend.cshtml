@@ -1,0 +1,26 @@
+﻿<div id="@ViewBag.StatistiekId">
+
+    <h3 class="statistieken-opmaak-titel">
+        @ViewBag.ItemNaam
+    </h3>
+
+    <div>
+        <div class="statistieken-opmaak-inhoud">
+            Aantal tweets: @ViewBag.ItemVermeldingen
+        </div>
+        <div class="statistieken-opmaak-inhoud">
+            Trend: @ViewBag.ItemTrend
+        </div>
+
+    </div>
+
+    <button id="verwijderen-@ViewBag.StatistiekId" class="btn btn-primary" onclick="statistiekVerwijderen(this.id)">
+        <span class="glyphicon glyphicon-remove"></span>
+    </button>
+
+   
+
+</div>
+
+<script src="~/Scripts/EigenScripts.js"></script>
+

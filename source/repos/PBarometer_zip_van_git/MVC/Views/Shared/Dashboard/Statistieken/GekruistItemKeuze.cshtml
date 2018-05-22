@@ -1,0 +1,41 @@
+﻿<label>Duid 2 items aan om te kruisen</label>
+
+<div>
+    @Html.Partial("~/Views/Shared/Dashboard/Dropdown/GemonitordeItemsAantal.cshtml")
+</div>
+
+<div id="divToevoegenOpslaan">
+    <button id="btnToevoegenOpslaan" class="btn btn-primary btn-algemene-layout">Opslaan</button>
+</div>
+
+<script>
+
+    $("#btnToevoegenOpslaan").click(function () {
+
+        var link;
+
+        var tempLink = '@Html.Raw(Url.Action("LaadKruising", "DashboardStatistieken", new
+                   {
+                       item1 = "replaceItem1",
+                       item2 = "replaceItem2",
+                      
+                   }))'
+                    .replace("replaceGrafiektitel", $("#grafiektitel").val());
+
+         var templink2 = tempLink.replace("replaceItem1", $("#item1").val());
+
+         link = templink2.replace("replaceItem2", $("#item2").val());
+
+
+        $.get(link , {}, function (resultaat) {
+            $("#elementenStatistieken").append("<div class=col-md-6>" + resultaat + "</div>");
+
+        });
+
+    });
+
+</script>
+
+
+
+

@@ -1,0 +1,52 @@
+﻿<div>
+    <h3 class="statistieken-opmaak-titel">Top 5</h3>
+
+    <ol class="statistieken-opmaak-inhoud">
+
+        @for (int i = 0; i < ViewBag.ItemsNamen.Count; i++)
+        {
+            <li>@ViewBag.ItemsNamen[i] - @ViewBag.ItemsWaarden[i]</li>
+        }
+
+
+    </ol>
+
+
+
+</div>
+
+<script src="~/Scripts/EigenScripts.js"></script>
+
+
+
+@*@{
+        var items = new List<String>()
+    {
+    "item 1",
+    "item 2",
+    "item 3",
+    "item 4",
+    "item 5"
+    };
+
+    }
+
+    <div id="@ViewBag.StatisitekId">
+        <h3 class="statistieken-opmaak-titel">@ViewBag.Itemnaam</h3>
+
+        <ol class="statistieken-opmaak-inhoud">
+            @foreach (var element in items)
+            {
+                <li>@element</li>
+            }
+        </ol>
+
+        <button id="verwijderen-@ViewBag.StatisitekId" onclick="statistiekVerwijderen(this.id)">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+
+    <script src="~/Scripts/EigenScripts.js"></script>*@
+
+
+

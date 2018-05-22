@@ -1,0 +1,294 @@
+﻿<script>
+	//Horizontaal staafdiagram
+	var c = document.getElementById("horizontalBarChart");
+	var ctx = $("#horizontalBarChart");
+	var tData = $.getValues("/Grafiek/BarChartData");
+	var myHorizontalBarChart = new Chart(ctx, {
+		options: {
+			title: {
+				display: true,
+				text: "TEST",
+
+				//fontColor: '#0000ff',
+				//fontFamily: "Times New Roman",
+				fontSize: 18
+
+			},
+			legend: {
+				display: false
+			},
+			scales: {
+				xAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+		},
+		type: 'horizontalBar',
+		data: tData
+	});
+</script>
+
+<script>
+	//Horizontaal staafdiagram - multi
+
+	//var c = document.getElementById("");
+	//var ctx = c.getContext("2d");
+
+	var ctx = $("#MultibarHorizontalChart");
+	var tData = $.getValues("/Grafiek/MultiBarChartData");
+	var myHorizontalBarChartMulti = new Chart(ctx, {
+		options: {
+			title: {
+				display: true,
+				text: "TEST",
+				fontSize: 18
+
+			},
+			scales: {
+				xAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+		},
+		type: 'horizontalBar',
+		data: tData
+	});
+</script>
+
+
+
+
+
+
+<script>
+	//Lijndiagram
+	//var c = document.getElementById("");
+	//var ctx = c.getContext("2d");
+
+	var ctx = $("#lineChart");
+	//var tData = $.getValues("/Grafiek/LineChartData");
+	var tData = $.getValues("/Grafiek/LineChartAantalTweets");
+	var myLineChart = new Chart(ctx, {
+		options: {
+			title: {
+				display: true,
+				text: "TEST",
+				fontSize: 18
+
+			},
+			legend: {
+				display: false
+			},
+
+			scales: {
+				xAxes: [{
+					ticks: {
+						autoSkip: false,
+						maxRotation: 90,
+						minRotation: 90
+					}
+				}],
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+
+		},
+		type: 'line',
+		data: tData
+	});
+</script>
+
+<script>
+	//Lijndiagram - multi
+	//var c = document.getElementById("");
+	//var ctx = c.getContext("2d");
+
+	var ctx = $("#MultiLineChart");
+	//var tData = $.getValues("/Grafiek/MultiLineChartData");
+	var tData = $.getValues("/Grafiek/LineChartVergelijking");
+	var myLineChartMulti = new Chart(ctx, {
+		options: {
+			title: {
+				display: true,
+				text: "TEST",
+				fontSize: 18
+
+			},
+
+			scales: {
+				xAxes: [{
+					ticks: {
+						autoSkip: false,
+						maxRotation: 90,
+						minRotation: 90
+					}
+				}],
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+
+		},
+		type: 'line',
+		data: tData
+	});
+</script>
+
+<script>
+	//Staafdiagram
+	@*var c = document.getElementById(@teller);*@
+
+	//var c = document.getElementById("")
+	//var ctx = c.getContext("2d");
+
+	var ctx = $("#barChart");
+	//var tData = $.getValues("/Grafiek/BarChartData");
+	var tData = $.getValues("/Grafiek/BarChartVergelijking");
+	var myBarChart = new Chart(ctx, {
+		options: {
+			title: {
+				display: true,
+				text: "TEST",
+				fontSize: 18
+			},
+			legend: {
+				display: false
+			},
+			yAxes: [{
+				ticks: {
+					beginAtZero: true
+				}
+			}]
+		},
+		type: 'bar',
+		data: tData
+
+	});
+</script>
+
+<script>
+	//Staafdiagram - multi
+	//var c = document.getElementById("");
+	//var ctx = c.getContext("2d");
+
+	var ctx = $("#MultibarChart");
+	var tData = $.getValues("/Grafiek/MultiBarChartData");
+	var myBarChartMulti = new Chart(ctx, {
+		options: {
+			title: {
+				display: true,
+				text: "TEST",
+				fontSize: 18
+			},
+
+			scales: {
+				xAxes: [{
+					ticks: {
+						autoSkip: false,
+						maxRotation: 90,
+						minRotation: 90
+					}
+				}]
+			},
+			yAxes: [{
+				ticks: {
+					beginAtZero: true
+				}
+			}]
+
+		},
+		type: 'bar',
+		data: tData
+	});
+</script>
+
+<script>
+	//Taartdiagram
+	//var c = document.getElementById("");
+	//var ctx = c.getContext("2d");
+
+	var ctx = $("#pieChart");
+	var tData = $.getValues("/Grafiek/DonutPieChartData");
+	var myPieChart = new Chart(ctx, {
+		options: {
+			title: {
+				display: true,
+				text: "TEST",
+				fontSize: 18
+			}
+		},
+		type: 'pie',
+		data: tData,
+
+	});
+</script>
+
+
+<script>
+	//Taartdiagram - multi
+	//var c = document.getElementById("");
+	//var ctx = c.getContext("2d");
+
+	var ctx = $("#multiPieChart");
+	var tData = $.getValues("/Grafiek/MultiDonutChartData");
+	var myPieChartMulti = new Chart(ctx, {
+		options: {
+			title: {
+				display: true,
+				text: "TEST",
+				fontSize: 18
+			}
+		},
+		type: 'pie',
+		data: tData,
+	});
+</script>
+
+
+@*<script>
+		//Donutdiagram
+		var c = document.getElementById("donutChart");
+		var ctx = c.getContext("2d");
+		var tData = $.getValues("/Grafiek/DonutPieChartData");
+		var myDoughnutChart = new Chart(ctx, {
+			options: {
+				title: {
+					display: true,
+					text: "TEST",
+					fontSize: 18
+				}
+			},
+			type: 'doughnut',
+			data: tData,
+		});
+	</script>
+
+	<script>
+		//Donutdiagram - multi
+		var c = document.getElementById("MultiDonutChart");
+		var ctx = c.getContext("2d");
+		var tData = $.getValues("/Grafiek/MultiDonutChartData");
+		var myDoughnutChartMulti = new Chart(ctx, {
+			options: {
+				title: {
+					display: true,
+					text: "TEST",
+					fontSize: 18
+				}
+			},
+			type: 'doughnut',
+			data: tData,
+		});
+	</script>*@
+
+
+

@@ -1,0 +1,24 @@
+﻿
+<script type="text/javascript">
+        $("#btnData").click(function () {
+        $.get('@Url.Action("LaadData", "Admin")', {}, function (resultaat) {
+            $("#divResultaat").html(resultaat);
+        });
+        });
+</script>
+
+<script type="text/javascript">
+        $("#btnLayout").click(function () {
+        $.get('@Url.Action("LayoutAanpassen", "Admin")', {}, function (resultaat) {
+            $("#divResultaat").html(resultaat);
+        });
+        });
+</script>
+
+<script type="text/javascript">
+        $("#btnNietIngelogd").click(function () {
+        $.get('@Url.Action("LaadNietIngelogd", "Admin")', {}, function (resultaat) {
+            $("#divResultaat").html(resultaat);
+        });
+        });
+</script>

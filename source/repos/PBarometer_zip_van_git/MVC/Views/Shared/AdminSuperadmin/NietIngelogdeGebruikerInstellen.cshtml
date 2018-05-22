@@ -1,0 +1,62 @@
+﻿@model MVC.Models.SettingsNotLoggedInViewModel
+
+@{
+  ViewBag.Title = "NietIngelogdeGebruikerInstellen";
+}
+
+<h3>Instellingen voor niet-ingelogde gebruikers</h3>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Zichtbaar?
+        </th>
+        <th>
+            Functie
+        </th>
+        <th>
+            Verander zichtbaarheid
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(m => m.OverzichtAdded)
+        </td>
+        <td>
+            @Html.LabelFor(m => m.OverzichtAdded)
+        </td>
+        <td>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("SlaOverzichtAddedOp", "Admin", new { OverzichtAdded = !Model.OverzichtAdded })'">
+                <span>Verander</span>
+            </button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(m => m.WeeklyReviewAdded)
+        </td>
+        <td>
+            @Html.LabelFor(m => m.WeeklyReviewAdded)
+        </td>
+        <td>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("SlaWeeklyReviewAddedOp", "Admin", new { WeeklyReviewAdded = !Model.WeeklyReviewAdded })'">
+                <span>Verander</span>
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(m => m.AlertsAdded)
+        </td>
+        <td>
+            @Html.LabelFor(m => m.AlertsAdded)
+        </td>
+        <td>
+            <button class="btn btn-primary" onclick="location.href='@Url.Action("SlaAlertsAddedOp", "Admin", new { AlertsAdded = !Model.AlertsAdded })'">
+                <span>Verander</span>
+            </button>
+        </td>
+    </tr>
+</table>

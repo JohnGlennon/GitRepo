@@ -1,0 +1,17 @@
+﻿@*Seppe*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <div class="elementen-centreren">
+        <img src="~/images/uhno.jpg" />
+        <h1 class="text-danger"> Oeps... Er is iets misgelopen.</h1>
+        <text>Klik hier om terug te keren naar de homepagina.</text>
+        <div>@Html.ActionLink("Home", "Index", "Home", new { @class = "btn btn-primary btn-large" })</div>
+    </div>
+</body>
+</html>

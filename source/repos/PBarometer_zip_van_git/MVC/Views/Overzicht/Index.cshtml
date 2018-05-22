@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Overzicht";
+}
+
+<h2>Overzicht</h2>
+<div class="container">
+    <div class="col-sm-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a data-toggle="pill" href="#personen">Personen</a></li>
+            <li><a data-toggle="pill" href="#organisaties">Organisaties</a></li>
+            <li><a data-toggle="pill" href="#themas">Thema's</a></li>
+        </ul>
+    </div>
+    <div class="tab-content col col-sm-10">
+        <div id="personen" class="tab-pane fade in active">
+            @Html.Partial("~/Views/Shared/GemonitordItem/Personen.cshtml")
+        </div>
+        <div id="organisaties" class="tab-pane fade">
+            @Html.Partial("~/Views/Shared/GemonitordItem/Organisaties.cshtml")
+        </div>
+        <div id="themas" class="tab-pane fade">
+            @Html.Partial("~/Views/Shared/GemonitordItem/Themas.cshtml")
+        </div>
+    </div>
+</div>
+
+@section scripts {
+<script>
+    $('button').click(function (e) {
+        e.stopPropagation();
+    });
+</script>
+}

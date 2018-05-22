@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Personen";
+}
+
+
+<input type="text" id="zoekBalkPersonen" onkeyup="zoekFunctie()" placeholder="Zoek op naam..." class="form-control col col-md-6">
+@if (User.IsInRole("Admin"))
+{
+
+    <button type="button" class="btn btn-secondary col-sm-offset-5" onclick="location.href='@Url.Action("MaakPersoon", "Overzicht")'">
+        <span class="glyphicon glyphicon-plus"></span> Maak een persoon aan
+    </button>
+
+}
+
+
+<div class="table-container">
+    <table class="table table-hover" id="personenTabel">
+        <thead>
+            <tr>
+                <th>
+                    <p>Persoon</p>
+                </th>
+                <th>
+                    <p>Vermeldingen</p>
+                </th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var persoon in ViewBag.Personen)
+            {
+                <tr onclick="showModal('#persoonDetails', '#persoonDetailsBody', @persoon.GemonitordItemId)">
+                    <td>
+                        @persoon.Naam
+                    </td>
+                    <td>
+                        @persoon.TotaalAantalVermeldingen
+                    </td>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("PasPersoonAan", "Overzicht",new { id = persoon.GemonitordItemId})'">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("VerwijderItem", "Overzicht",new { id = persoon.GemonitordItemId})'">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div id="persoonDetails" class="modal fade" tabindex="-1" role="dialog" data-url='@Url.Action("PersoonDetails","Overzicht")'>
+    <div class="modal-dialog modal-sm" id="persoonDetailsBody">
+    </div>
+</div>
+
+
+<script>
+    function zoekFunctie() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("zoekBalkPersonen");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("personenTabel");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<script>
+    function showModal(persoonDetails, persoonDetailsBody, id) {
+        var url = $(persoonDetails).data('url');
+
+        $.get(url, { id: id }, function (data) {
+            $(persoonDetailsBody).html(data);
+            $(persoonDetails).modal('show');
+        });
+    }
+</script>
+

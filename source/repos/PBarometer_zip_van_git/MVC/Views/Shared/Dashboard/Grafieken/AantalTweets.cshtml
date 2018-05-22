@@ -1,0 +1,159 @@
+﻿<label>Kies een soort item</label>
+
+<select id="itemOpties">
+    <option hidden selected>Selecteer een optie</option>
+    <option>Persoon</option>
+    <option>Organisatie</option>
+    <option>Thema</option>
+</select>
+
+<div>
+    <label id="lblKiezen"></label>
+    <div id="itemAantalTweetsKeuzelijst"></div>
+</div>
+
+
+
+<div>
+        <label>Van hoeveel dagen wilt u de evolutie zien?</label>
+        <select id="aantalDagen">
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+        </select>
+</div>
+
+
+<div>
+    <label>Geef een grafiektitel in</label>
+    <input id="grafiektitel" type="text" />
+</div>
+
+<div class="onzichtbaar" id="divToevoegenOpslaan">
+    <button id="btnToevoegenOpslaan" class="btn btn-primary btn-algemene-layout">Opslaan</button>
+</div>
+
+
+<script>
+    $("#itemOpties").change(function () {
+
+        var keuze = $("#itemOpties").val();
+
+        switch (keuze) {
+            case "Persoon":
+
+                $.get('@Url.Action("LaadPersonen1Item", "Dashboard")', {}, function (resultaat) {
+                    $("#itemAantalTweetsKeuzelijst").html(resultaat);
+                    $("#lblKiezen").html("Kies een persoon")
+                });
+
+            break;
+
+            case "Organisatie":
+
+                $.get('@Url.Action("LaadOrganisaties1Item", "Dashboard")', {}, function (resultaat) {
+                    $("#itemAantalTweetsKeuzelijst").html(resultaat)
+                    $("#lblKiezen").html("Kies een organisatie")
+
+                 });
+
+            break;
+
+            case "Thema":
+
+                $.get('@Url.Action("LaadThemas1Item", "Dashboard")', {}, function (resultaat) {
+                    $("#itemAantalTweetsKeuzelijst").html(resultaat)
+                    $("#lblKiezen").html("Kies een thema")
+
+                 });
+
+            break;
+        }
+
+        $("#divToevoegenOpslaan").show();
+
+    });
+</script>
+
+
+<script>
+
+    $("#btnToevoegenOpslaan").click(function () {
+
+        var keuze = $("#itemOpties").val();
+        var link;
+
+      
+
+
+        switch (keuze) {
+            case "Persoon":
+
+                var sublink1 = '@Html.Raw(Url.Action("LaadLijndiagramAantalTweets", "Dashboard",
+                     new { grafiektitel = "replaceGrafiektitel",
+                         item = "replaceItem",
+                         aantalDagen = "replaceAantalDagen"
+                     }))'
+                    .replace("replaceGrafiektitel", $("#grafiektitel").val());
+
+                var sublink2 = sublink1.replace("replaceItem", $("#persoon1").val());
+
+                link = sublink2.replace("replaceAantalDagen", $("#aantalDagen").val());
+
+
+            break;
+
+            case "Organisatie":
+
+                var sublink1 = '@Html.Raw(Url.Action("LaadLijndiagramAantalTweets", "Dashboard",
+                     new { grafiektitel = "replaceGrafiektitel",
+                         item = "replaceItem",
+                         aantalDagen = "replaceAantalDagen"
+                     }))'
+                    .replace("replaceGrafiektitel", $("#grafiektitel").val());
+
+                var sublink2 = sublink1.replace("replaceItem", $("#organisatie1").val());
+
+                link = sublink2.replace("replaceAantalDagen", $("#aantalDagen").val());
+
+            break;
+
+            case "Thema":
+
+               var sublink1 = '@Html.Raw(Url.Action("LaadLijndiagramAantalTweets", "Dashboard",
+                     new { grafiektitel = "replaceGrafiektitel",
+                         item = "replaceItem",
+                         aantalDagen = "replaceAantalDagen"
+                     }))'
+                    .replace("replaceGrafiektitel", $("#grafiektitel").val());
+
+                var sublink2 = sublink1.replace("replaceItem", $("#thema1").val());
+
+                link = sublink2.replace("replaceAantalDagen", $("#aantalDagen").val());
+
+            break;
+        }
+
+        $.get(link, {}, function (resultaat) {
+            $("#elementenGrafieken").append("<div class=col-md-6>" + resultaat + "</div>");
+
+        });
+
+        $("#modalGrafiekToevoegen").modal('hide');
+
+    });
+
+</script>
+
+
+
+

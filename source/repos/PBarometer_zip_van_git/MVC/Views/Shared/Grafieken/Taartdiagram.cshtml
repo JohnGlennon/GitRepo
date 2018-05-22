@@ -1,0 +1,19 @@
+﻿<script>
+    //Taartdiagram
+    //var c = document.getElementById("pieChart");
+    //var ctx = c.getContext("2d");
+
+    var ctx = $("#pieChart");
+    var tData = $.getValues("/Grafiek/DonutPieChartData");
+    var myDoughnutChart = new Chart(ctx, {
+        options: {
+            title: {
+                display: true,
+                text: "TEST"
+            }
+        },
+        type: 'pie',
+        data: tData,
+
+    });
+</script>

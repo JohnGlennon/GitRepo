@@ -1,0 +1,41 @@
+﻿@model MVC.Models.SuperAdmin.MaakDeelplatformViewModel
+
+@using (Ajax.BeginForm("EditDeelplatform", "SuperAdmin", new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "EditDeelplatformForm" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div id="editDeelplatformForm" class="form-horizontal">
+    <h4>Pas een deelplatform aan</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <p>@ViewBag.Boodschap</p>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Naam, htmlAttributes: new { @class = "control-label col-sm-2" })
+        <div class="col-sm-offset-2">
+            @Html.EditorFor(model => model.Naam, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Naam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.URLNaam, htmlAttributes: new { @class = "control-label col-sm-2" })
+        <div class="col-sm-offset-2">
+            @Html.EditorFor(model => model.URLNaam, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.URLNaam, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AantalDagenHistoriek, htmlAttributes: new { @class = "control-label col-sm-2" })
+        <div class="col-sm-offset-2">
+            @Html.EditorFor(model => model.AantalDagenHistoriek, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AantalDagenHistoriek, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2">
+            <input type="submit" value="Pas aan" class="btn btn-secondary" />
+        </div>
+    </div>
+</div>
+}

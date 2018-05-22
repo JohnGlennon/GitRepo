@@ -1,0 +1,56 @@
+﻿<input type="text" id="zoekBalkPersonenOrganisatie" onkeyup="zoekFunctiePersonenOrganisatie()" placeholder="Zoek op naam..." class="form-control">
+
+<div class="table-container">
+    <table class="table table-hover" id="personenTabelOrganisatie">
+        <thead>
+            <tr>
+                <th>
+                    <p>Persoon</p>
+                </th>
+                <th>
+                    <p>Vermeldingen</p>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var persoon in ViewBag.Personen)
+            {
+                <tr data-dismiss="modal" onclick="showModalPersoonDetails('#persoonDetailsOrganisatie', '#persoonDetailsOrganisatieBody', @persoon.GemonitordItemId)">
+                    <td>
+                        @persoon.Naam
+                    </td>
+                    <td>
+                        @persoon.TotaalAantalVermeldingen
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<script>
+    function zoekFunctiePersonenOrganisatie() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("zoekBalkPersonenOrganisatie");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("personenTabelOrganisatie");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+

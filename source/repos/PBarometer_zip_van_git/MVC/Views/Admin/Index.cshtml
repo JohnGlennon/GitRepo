@@ -1,0 +1,24 @@
+﻿@*Seppe*@
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Admin</h1>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Partial("~/Views/Shared/AdminSuperadmin/AdminKnoppen.cshtml")
+        </div>
+        <div class="col-md-8" id="divResultaat">
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    @Html.Partial("~/Views/Shared/AdminSuperadmin/AdminSuperadminScripts.cshtml")
+}

@@ -1,0 +1,102 @@
+﻿@model Domain.Gemonitordeitems.GemonitordItem
+
+<label>Kies een soort item</label>
+
+<select id="itemOpties">
+    <option hidden selected>Selecteer een optie</option>
+    <option>Persoon</option>
+    <option>Organisatie</option>
+    <option>Thema</option>
+</select>
+
+<div>
+    <label id="lblKiezen"></label>
+    <div id="itemGeselecteerd"></div>
+</div>
+
+<div class="onzichtbaar" id="divToevoegenOpslaan">
+    <button id="btnToevoegenOpslaan" class="btn btn-primary btn-algemene-layout">Opslaan</button>
+</div>
+
+
+<script>
+
+    $("#itemOpties").change(function () {
+
+        var keuze = $("#itemOpties").val();
+
+        switch (keuze) {
+            case "Persoon":
+
+                $.get('@Url.Action("LaadPersonen1Item", "Dashboard")', {}, function (resultaat) {
+                    $("#itemGeselecteerd").html(resultaat);
+                    $("#lblKiezen").html("Kies een persoon")
+                 });
+
+            break;
+
+            case "Organisatie":
+
+                $.get('@Url.Action("LaadOrganisaties1Item", "Dashboard")', {}, function (resultaat) {
+                    $("#itemGeselecteerd").html(resultaat)
+                    $("#lblKiezen").html("Kies een organisatie")
+
+                 });
+
+            break;
+
+            case "Thema":
+
+                $.get('@Url.Action("LaadThemas1Item", "Dashboard")', {}, function (resultaat) {
+                    $("#itemGeselecteerd").html(resultaat)
+                    $("#lblKiezen").html("Kies een thema")
+
+                 });
+
+            break;
+        }
+
+        $("#divToevoegenOpslaan").show();
+
+    });
+
+</script>
+
+
+<script>
+
+    $("#btnToevoegenOpslaan").click(function () {
+
+        var keuze = $("#itemOpties").val();
+        var link;
+
+        switch (keuze) {
+            case "Persoon":
+
+                link = '@Url.Action("LaadGetal", "DashboardStatistieken", new { item = "replace" })'.replace("replace", $("#persoon1").val());
+
+            break;
+
+            case "Organisatie":
+
+                link = '@Url.Action("LaadGetal", "DashboardStatistieken", new { item = "replace" })'.replace("replace", $("#organisatie1").val());
+
+            break;
+
+            case "Thema":
+                link = '@Url.Action("LaadGetal", "DashboardStatistieken", new { item = "replace" })'.replace("replace", $("#thema1").val());
+
+            break;
+        }
+
+        $.get(link , {}, function (resultaat) {
+            $("#elementenStatistieken").append("<div class=col-md-6>" + resultaat + "</div>");
+
+        });
+
+        $("#modalStatistiekToevoegen").modal('hide');
+
+    });
+
+</script>
+

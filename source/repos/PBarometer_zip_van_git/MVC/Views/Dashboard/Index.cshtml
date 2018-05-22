@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@*Foto voor niet ingelogde gebruikers*@
+@if (!Request.IsAuthenticated)
+
+{
+    <div class="container-fluid dashboardAfbeeldingContainer elementen-centreren">
+        <div class="dashboardTekst">
+            <h3>@ViewBag.DeelplatformNaam</h3>
+            <hr />
+            <h4>Welkom op het <b>dashboard.</b></h4>
+        </div>
+        <img class="deelplatformHomeAfbeelding" src="~/images/Deelplatformen/@ViewBag.Afbeelding" />
+        <button class="btn btn-secondary" id="btnInloggen" onclick="location.href='@Url.Action("Login","Account", new { ReturnUrl =
+                                                                                Url.Action(ViewContext.RouteData.Values["action"].ToString(),
+                                                                                ViewContext.RouteData.Values["controller"].ToString())})'">
+            Inloggen
+        </button>
+        <button class="btn btn-primary" id="btnRegistreren" onclick="location.href='@Url.Action("Register","Account",
+                                                                                     new { ReturnUrl = Url.Action(ViewContext.RouteData.Values["action"].ToString(),
+                                                                                     ViewContext.RouteData.Values["controller"].ToString())})'">
+            Registreren
+        </button>
+    </div>
+}
+else
+{
+    <h1>Deelplatform</h1>
+}
+
+
+
+
+<div class="container" id="elementenGrafieken">
+
+    <div>
+        <div class="col-md-11"></div>
+        <div class="col-md-1">
+            <button class="btn btn-primary button-xx-large" id="btnToevoegen" data-target="#modalGrafiekToevoegen" data-toggle="modal">+</button>
+        </div>
+    </div>
+
+
+    @foreach (var grafiek in ViewBag.Grafieken)
+    {
+        <div class="col-md-5">
+
+            <canvas id="@grafiek.GrafiekId" height="300"></canvas>
+
+            <button id="bewerken-@grafiek.GrafiekId" class="btn btn-primary" onclick="grafiekBewerken(this.id)">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+
+            <button id="verwijderen-@grafiek.GrafiekId" class="btn btn-primary" onclick="grafiekVerwijderen(this.id)">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    }
+
+
+
+
+</div>
+
+
+<div class="modal" id="modalGrafiekToevoegen" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Grafiek toevoegen</h4>
+            </div>
+            <div class="modal-body" id="divGrafiekToevoegen">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="modal" id="modalGrafiekAanpassen" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Grafiek aanpassen</h4>
+            </div>
+            <div class="modal-body" id="divGrafiekAanpassen">
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+
+<script src="~/Scripts/Chart.js"></script>
+
+<script src="~/Scripts/EigenScripts.js"></script>
+
+@*<script src="~/Scripts/Common.js"></script>
+
+
+    @Html.Partial("~/Views/Shared/Grafieken/Grafieken.cshtml")*@
+
+
+
+
+
+
+<script type="text/javascript">
+                $("#btnToevoegen").click(function () {
+                    $.get('@Url.Action("LaadGrafiekToevoegen", "Dashboard")', {}, function (resultaat) {
+                        $("#divGrafiekToevoegen").html(resultaat);
+                });
+                });
+</script>
+
+
+
+
+
+<script>
+     var grafieken = @Html.Raw(Json.Encode(ViewBag.Grafieken));
+
+     for (var i = 0; i < grafieken.length; i++) {
+
+         var grafiekIdViewbag = grafieken[i].GrafiekId;
+         var titelViewbag = grafieken[i].Titel;
+         var toonLegendeViewbag = grafieken[i].ToonLegende
+         var toonXAsViewbag = grafieken[i].ToonXAs;
+         var xOorsprongNulViewbag = grafieken[i].XOorsprongNul;
+         var yOorsprongNulViewbag = grafieken[i].YOorsprongNul;
+
+         var toonYAsViewbag = grafieken[i].ToonYAs;
+         var xTitelViewbag = grafieken[i].XTitel;
+         var yTitelViewbag = grafieken[i].YTitel;
+
+         var xLabelsViewbag = grafieken[i].XLabels;
+         var typeViewbag = grafieken[i].Type;
+
+         var dataViewbag = grafieken[i].Datawaarden;
+         var legendelijstViewbag = grafieken[i].LegendeLijst;
+
+         var backgroundcolorViewbag = grafieken[i].Achtergrondkleur;
+         var bordercolorViewbag = grafieken[i].Randkleur;
+
+
+         var FillDatasetViewbag = grafieken[i].FillDataset;
+         var LijnlegendeweergaveViewbag = grafieken[i].Lijnlegendeweergave;
+         var XAsMaxrotatieViewbag = grafieken[i].XAsMaxrotatie;
+         var XAsMinrotatieViewbag = grafieken[i].XAsMinrotatie;
+
+
+
+         GrafiekOpbouwen(grafiekIdViewbag, titelViewbag, typeViewbag, toonLegendeViewbag, xOorsprongNulViewbag, yOorsprongNulViewbag, toonXAsViewbag, toonYAsViewbag,
+             FillDatasetViewbag, LijnlegendeweergaveViewbag, XAsMaxrotatieViewbag, XAsMinrotatieViewbag, xTitelViewbag, yTitelViewbag,
+             xLabelsViewbag, legendelijstViewbag[0], legendelijstViewbag[1], legendelijstViewbag[2], legendelijstViewbag[3], legendelijstViewbag[4],
+             dataViewbag[0], dataViewbag[1], dataViewbag[2], dataViewbag[3], dataViewbag[4],
+             backgroundcolorViewbag[0], backgroundcolorViewbag[1], backgroundcolorViewbag[2], backgroundcolorViewbag[3], backgroundcolorViewbag[4],
+             bordercolorViewbag[0], bordercolorViewbag[1], bordercolorViewbag[2], bordercolorViewbag[3], bordercolorViewbag[4]
+         );
+     }
+
+
+</script>
+
+<script>
+        function grafiekBewerken(id) {
+
+        var lengteId = id.substring(id.indexOf("-") + 1, id.length - 1).length;
+        var subid;
+
+        if (lengteId == 0) {
+            subid = id.substring(id.length - 1);
+        } else if (lengteId > 0) {
+            subid = id.substring(id.indexOf("-") + 1, id.length - 1);
+        }
+
+
+         var link = '@Html.Raw(Url.Action("LaadGrafiekAanpassen", "Dashboard",
+                    new { id = "replaceId"}
+                 ))'.replace("replaceId", subid);
+
+
+         $.get(link, {}, function (resultaat) {
+             $("#divGrafiekAanpassen").html(resultaat);
+         });
+
+         $("#modalGrafiekAanpassen").modal();
+
+
+        }
+</script>
+

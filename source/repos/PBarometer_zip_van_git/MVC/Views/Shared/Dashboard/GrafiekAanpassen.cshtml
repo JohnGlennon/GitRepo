@@ -1,0 +1,69 @@
+﻿@*@*<div>
+        <label>X-as</label>
+        <select id="inputXas">
+            <option>data1</option>
+            <option>data2</option>
+            <option>data3</option>
+        </select>
+    </div>
+
+
+    <div>
+        <label>Y-as</label>
+        Html.DropDownList("Dashboard", ViewBag.YWaarden as List<SelectListItem>)
+
+    </div>*@
+
+<div>
+    <label>Titel</label>
+    <input id="inputTitel" type="text"/>
+</div>
+
+<div>
+        <button type="button" data-toggle="collapse" data-target="#gi" class="btn btn-primary btn-algemene-layout">Geavanceerde instellingen</button>
+        <div id="gi" class="collapse">
+            <h4>Geavanceerde instellingen</h4>
+
+
+            <input type="checkbox" id="chkAssenWisselen">Assen wisselen (als horizontaal staafdiagram weergeven)<br>
+
+            @*<div>
+                <label>Schaal aanpassen</label>
+                @Html.DropDownList("Beheer", ViewBag.Schaalopties as List<SelectListItem>)
+            </div>*@
+        </div>
+    </div>
+
+<div>
+    <button class="btn btn-primary btn-algemene-layout" id="btnAanpassenOpslaan">Opslaan</button>
+</div>
+
+
+@*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
+
+
+
+<script src="~/Scripts/EigenScripts.js"></script>
+
+<script type="text/javascript">
+
+    $("#btnAanpassenOpslaan").click(function () {
+
+
+        @*grafiekWijzigen(@Html.Raw(Json.Encode(ViewBag.AlleGrafieken)), @Html.Raw(Json.Encode(ViewBag.AanTePassenGrafiekId)));*@
+
+        @*grafiekWijzigen(@Html.Raw(Json.Encode(ViewBag.AlleGrafieken)), @Html.Raw(Json.Encode(ViewBag.AanTePassenGrafiekId)));*@
+        grafiekWijzigen(@Html.Raw(Json.Encode(ViewBag.AanTePassenGrafiek)));
+
+
+        $("#inputTitel").val("");
+        $("#modalGrafiekAanpassen").modal('hide');
+        
+
+    });
+
+
+
+</script>
+
+

@@ -1,0 +1,21 @@
+﻿@*<canvas id="MultibarHorizontalChart" height="250"></canvas>*@
+
+<script>
+    //Horizontaal staafdiagram - multi
+    var c = document.getElementById("");
+    var ctx = c.getContext("2d");
+
+    var ctx = $("#MultibarHorizontalChart");
+    var tData = $.getValues("/Grafiek/MultiBarChartData");
+    var myBarChart = new Chart(ctx, {
+        options: {
+            title: {
+                display: true,
+                text: "TEST"
+
+            }
+        },
+        type: 'horizontalBar',
+        data: tData
+    });
+</script>

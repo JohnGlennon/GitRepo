@@ -1,0 +1,7 @@
+﻿@for (int i = 1; i <= 2; i++)
+{
+    <div>
+        <label>Organisatie @i</label>
+        @Html.DropDownList("Dashboard", ViewBag.OrganisatiesViewbag as List<SelectListItem>, new { id = "organisatie" + i })
+    </div>
+}

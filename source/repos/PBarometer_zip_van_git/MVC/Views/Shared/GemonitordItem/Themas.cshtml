@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Themas";
+}
+
+
+
+<input type="text" id="zoekBalkThemas" onkeyup="zoekFunctieThemas()" placeholder="Zoek op naam..." class="form-control col col-md-6">
+@if (User.IsInRole("Admin"))
+{
+
+    <button type="button" class="btn btn-secondary col-sm-offset-5" onclick="location.href='@Url.Action("MaakThema", "Overzicht")'">
+        <span class="glyphicon glyphicon-plus"></span> Maak een thema aan
+    </button>
+
+}
+<div class="table-container">
+    <table class="table table-hover" id="themasTabel">
+        <thead>
+            <tr>
+                <th>
+                    <p>Thema</p>
+                </th>
+                <th>
+                    <p>Vermeldingen</p>
+                </th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>
+
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var thema in ViewBag.Themas)
+            {
+                <tr onclick="showModal('#themaDetails', '#themaDetailsBody', @thema.GemonitordItemId)">
+                    <td>
+                        @thema.Naam
+                    </td>
+                    <td>
+                        @thema.TotaalAantalVermeldingen
+                    </td>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("PasThemaAan", "Overzicht",new { id = thema.GemonitordItemId})'">
+                                <span class="glyphicon glyphicon-edit"></span>
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="location.href='@Url.Action("VerwijderItem", "Overzicht",new { id = thema.GemonitordItemId})'">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="themaDetails" class="modal fade" tabindex="-1" role="dialog" data-url='@Url.Action("ThemaDetails","Overzicht")'>
+    <div class="modal-dialog modal-sm" id="themaDetailsBody">
+    </div>
+</div>
+
+<script>
+    function zoekFunctieThemas() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("zoekBalkThemas");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("themasTabel");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

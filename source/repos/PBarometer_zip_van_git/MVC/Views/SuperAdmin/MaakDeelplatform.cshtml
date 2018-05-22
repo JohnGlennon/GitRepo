@@ -1,0 +1,48 @@
+﻿@model MVC.Models.SuperAdmin.MaakDeelplatformViewModel
+
+
+@using (Ajax.BeginForm("MaakDeelplatform", "SuperAdmin", new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "maakDeelplatformForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="maakDeelplatformForm" class="form-horizontal">
+        <h4>Maak een deelplatform aan</h4>
+        <hr />
+        @ViewBag.Boodschap
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <p>@ViewBag.deelplatformBoodschap</p>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Naam, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-offset-2">
+                @Html.EditorFor(model => model.Naam, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Naam, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.URLNaam, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-offset-2">
+                @Html.EditorFor(model => model.URLNaam, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.URLNaam, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AantalDagenHistoriek, htmlAttributes: new { @class = "control-label col-sm-2" })
+            <div class="col-sm-offset-2">
+                @Html.EditorFor(model => model.AantalDagenHistoriek, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AantalDagenHistoriek, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<div class="form-group">
+            <input id="afbeeldingUpload" title="Upload een afbeelding voor het deelplatform"
+                   type="file" name="Afbeelding" class="btn btn-secondary" />
+        </div>*@
+        <div class="form-group">
+            <div class="col-sm-offset-2">
+                <input type="submit" value="Maak aan" class="btn btn-secondary" />
+            </div>
+        </div>
+    </div>
+}
+

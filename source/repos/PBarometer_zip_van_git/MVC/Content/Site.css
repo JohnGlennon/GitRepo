@@ -1,0 +1,252 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: white;
+    /*background-image: url();*/
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+
+
+
+/*Hieronder staat de zelf geschreven CSS*/
+
+
+
+/*Afbeelding van de bel die gebruikt wordt in de navigatiebalk*/
+/*.alert-image {
+    background: url(../images/alert.png) no-repeat top left;
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-indent: -9999px;
+}*/
+
+
+
+.navbar, .navbar-inverse {
+    background-color: #428bca !important
+}
+
+/*.navbar > .active > a, .navbar > .active > a:focus, .navbar > .active > a:hover,
+.navbar-inverse > .active > a, .navbar-inverse > .active > a:focus, .navbar-inverse > .active > a:hover {
+    
+    
+}*/
+
+
+/*.btn-group-block {
+    display: block; 
+}*/
+
+.btn-algemene-layout {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 250px
+}
+
+.btn-blauw {
+    background-color: #3b5998
+}
+
+.btn-rood {
+    background-color: #dd4b39
+}
+
+.btn-groen {
+    background-color: #00aced
+}
+
+.button-xx-large {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: xx-large
+}
+
+.elementen-centreren {
+    text-align: center
+}
+
+/*Kleur elementen navigatiebalk instellen*/
+.nav.navbar-nav li a {
+    color: black
+}
+
+/*Weergave van de paginanummering*/
+.footer-paginanummer {
+    width: 100%;
+    border-top: solid;
+    border-bottom: solid;
+    border-width: thin;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+/*Scrollbar uitschakelen bij ingeklapte navigatiebalk*/
+.navbar-collapse.in {
+    overflow: hidden;
+    max-height: none !important;
+    height: auto !important;
+}
+
+/*Kleur tekst van het element op zwart instellen*/
+.navbar-inverse .navbar-brand {
+    color: black;
+}
+
+.onzichtbaar {
+    /*visibility: hidden*/
+    display: none
+}
+
+.zichtbaar {
+    /*visibility: visible*/
+    display: inline;
+}
+
+/*Deze class wordt gebruikt om aan te geven dat het om een bewerkingsknop gaat, 
+    background-color heeft dus eigenlijk geen nut, maar de CSS mag niet leeg zijn*/
+
+/*.bewerken {
+    background-color: #428bca
+}
+
+.verwijderen {
+    background-color: #428bca
+}*/
+
+
+h1 {
+    font-family: 'Palatino Linotype';
+    font-weight: bold
+}
+
+.grafiekhoogte {
+    height: 200px;
+}
+
+.statistieken-opmaak-titel {
+    font-family: 'Bookman Old Style';
+    font-variant: small-caps
+}
+
+.statistieken-opmaak-inhoud {
+    font-family: 'Palatino Linotype'
+}
+
+
+
+.deelplatformHomeAfbeelding {
+    width: 100%;
+    margin: -200px;
+}
+
+.deelplatformHomeContainer {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+    .deelplatformHomeContainer :hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
+
+.deelplatformTekst {
+    position: absolute;
+    top: 35%;
+    left: 40%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    width: 20%;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.dashboardAfbeeldingContainer {
+    position: relative;
+    height: 350px;
+    width: 100vw;
+    margin-left: -50vw;
+    left:50%;
+    overflow: hidden;
+}
+
+.dashboardTekst {
+    position: absolute;
+    top: 23%;
+    left: 30%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    width: 40%;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+#btnInloggen {
+    position: absolute;
+    top: 72%;
+    left: 38%;
+    width: 10%;
+}
+#btnRegistreren {
+    position: absolute;
+    top: 72%;
+    left: 52%;
+    width: 10%;
+}
+
+.table-container {
+    height: 70vh;
+}
+
+    .table-container table {
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+        width: 100%;
+    }
+
+        .table-container table thead {
+            flex: 0 0 auto;
+            width: calc(100% - 0.9em);
+        }
+
+        .table-container table tbody {
+            flex: 1 1 auto;
+            display: block;
+            overflow-y: scroll;
+        }
+
+            .table-container table tbody tr {
+                width: 100%;
+                cursor: pointer;
+            }
+
+            .table-container table thead, .table-container table tbody tr {
+                display: table;
+                table-layout: fixed;
+            }
